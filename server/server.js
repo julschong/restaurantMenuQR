@@ -1,11 +1,7 @@
 require('dotenv').config({ debug: true });
-
-const express = require('express');
-const morgan = require('morgan');
-
-const app = express();
-app.use(morgan('dev'));
-const asyncHandler = require('express-async-handler');
+const http = require('http');
+const app = require('./src/app');
+const server = http.createServer(app);
 
 const { sequelize } = require('./models/index');
 
@@ -16,16 +12,6 @@ sequelize
     })
     .catch((err) => console.log(err));
 
-process.env.NODE_ENV == 'dev' && app.use(morgan('tiny'));
-
-app.get(
-    '/',
-    asyncHandler(async (req, res) => {
-        const owners = await sequelize.models.Owner.findAll();
-        res.send(owners);
-    })
-);
-
 const port = process.env.PORT;
 
-app.listen(port, console.log(`Server Running on port ${port}`));
+server.listen(port, console.log(`Server Running on port ${port}`));

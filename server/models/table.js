@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
                 allowNull: false,
                 autoIncrement: false
             },
-            locationId: DataTypes.STRING,
+            LocationId: DataTypes.STRING,
             tableQRURL: DataTypes.STRING,
             occupied: DataTypes.INTEGER
         },

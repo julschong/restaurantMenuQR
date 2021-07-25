@@ -8,7 +8,7 @@ module.exports = {
          * Example:
          * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
          */
-        return queryInterface.addColumn('Restaurants', 'ownerId', {
+        return queryInterface.addColumn('Restaurants', 'OwnerId', {
             type: Sequelize.STRING,
             references: {
                 model: 'Owners',

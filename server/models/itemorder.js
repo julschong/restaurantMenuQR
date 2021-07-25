@@ -22,8 +22,8 @@ module.exports = (sequelize, DataTypes) => {
                 allowNull: false,
                 autoIncrement: false
             },
-            itemId: DataTypes.STRING,
-            orderId: DataTypes.STRING
+            TtemId: DataTypes.STRING,
+            OrderId: DataTypes.STRING
         },
         {
             sequelize,

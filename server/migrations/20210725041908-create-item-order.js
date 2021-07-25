@@ -7,7 +7,7 @@ module.exports = {
                 primaryKey: true,
                 type: Sequelize.STRING
             },
-            itemId: {
+            ItemId: {
                 type: Sequelize.STRING,
                 references: {
                     model: 'Items',
@@ -16,7 +16,7 @@ module.exports = {
                 onUpdate: 'CASCADE',
                 onDelete: 'SET NULL'
             },
-            orderId: {
+            OrderId: {
                 type: Sequelize.STRING,
                 references: {
                     model: 'Orders',

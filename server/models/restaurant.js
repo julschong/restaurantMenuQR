@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
         static associate(models) {
             // define association here
             this.hasMany(models.Location);
-            this.belongsTo(models.Owner, { foreignKey: 'ownerId' });
+            this.belongsTo(models.Owner, { foreignKey: 'OwnerId' });
         }
     }
     Restaurant.init(
@@ -23,7 +23,13 @@ module.exports = (sequelize, DataTypes) => {
                 autoIncrement: false
             },
             name: DataTypes.STRING,
-            ownerId: DataTypes.STRING
+            OwnerId: {
+                type: DataTypes.STRING,
+                references: {
+                    model: 'Owners',
+                    key: 'id'
+                }
+            }
         },
         {
             sequelize,

@@ -8,7 +8,7 @@ module.exports = {
                 primaryKey: true,
                 type: Sequelize.STRING
             },
-            restaurantId: {
+            RestaurantId: {
                 type: Sequelize.STRING,
                 references: {
                     model: 'Restaurants',
@@ -17,7 +17,7 @@ module.exports = {
                 onUpdate: 'CASCADE',
                 onDelete: 'SET NULL'
             },
-            menuId: {
+            MenuId: {
                 type: Sequelize.STRING,
                 references: {
                     model: 'Menus',

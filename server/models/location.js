@@ -21,8 +21,8 @@ module.exports = (sequelize, DataTypes) => {
                 allowNull: false,
                 autoIncrement: false
             },
-            restaurantId: DataTypes.STRING,
-            menuId: DataTypes.STRING,
+            RestaurantId: DataTypes.STRING,
+            MenuId: DataTypes.STRING,
             address: DataTypes.STRING,
             phoneNumber: DataTypes.STRING
         },

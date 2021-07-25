@@ -7,7 +7,7 @@ module.exports = {
                 primaryKey: true,
                 type: Sequelize.STRING
             },
-            menuId: {
+            MenuId: {
                 type: Sequelize.STRING,
                 references: {
                     model: 'Menus',

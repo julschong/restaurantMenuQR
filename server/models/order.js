@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
                 allowNull: false,
                 autoIncrement: false
             },
-            tableId: DataTypes.STRING,
+            TableId: DataTypes.STRING,
             status: DataTypes.STRING,
             finishTime: DataTypes.DATE
         },

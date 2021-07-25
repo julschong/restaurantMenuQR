@@ -7,7 +7,7 @@ module.exports = {
                 primaryKey: true,
                 type: Sequelize.STRING
             },
-            locationId: {
+            LocationId: {
                 type: Sequelize.STRING,
                 references: {
                     model: 'Locations',

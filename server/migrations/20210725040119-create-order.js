@@ -7,7 +7,7 @@ module.exports = {
                 primaryKey: true,
                 type: Sequelize.STRING
             },
-            tableId: {
+            TableId: {
                 type: Sequelize.STRING,
                 references: {
                     model: 'Tables',

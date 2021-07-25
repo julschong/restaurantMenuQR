@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
                 allowNull: false,
                 autoIncrement: false
             },
-            menuId: DataTypes.STRING,
+            MenuId: DataTypes.STRING,
             name: DataTypes.STRING,
             description: DataTypes.STRING,
             price: DataTypes.DECIMAL,
