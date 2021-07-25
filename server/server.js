@@ -21,8 +21,8 @@ process.env.NODE_ENV == 'dev' && app.use(morgan('tiny'));
 app.get(
     '/',
     asyncHandler(async (req, res) => {
-        console.log(await sequelize.models.Owner.findAll());
-        res.send('hello world');
+        const owners = await sequelize.models.Owner.findAll();
+        res.send(owners);
     })
 );
 

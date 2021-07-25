@@ -4,9 +4,9 @@ module.exports = {
         await queryInterface.createTable('Restaurants', {
             id: {
                 allowNull: false,
-                autoIncrement: true,
+                autoIncrement: false,
                 primaryKey: true,
-                type: Sequelize.INTEGER
+                type: Sequelize.STRING
             },
             name: {
                 type: Sequelize.STRING
@@ -19,17 +19,6 @@ module.exports = {
                 allowNull: false,
                 type: Sequelize.DATE
             }
-            // ownerId: {
-            //     allowNull: true,
-            //     type: Sequelize.INTEGER,
-            //     references: {
-            //         model: {
-            //             tableName: 'Owners',
-            //             schema: 'public'
-            //         },
-            //         key: 'id'
-            //     }
-            // }
         });
     },
     down: async (queryInterface, Sequelize) => {

@@ -9,10 +9,20 @@ module.exports = (sequelize, DataTypes) => {
          */
         static associate(models) {
             // define association here
+            this.belongsTo(models.Menu);
+            this.belongsToMany(models.Order, { through: 'ItemOrders' });
         }
     }
     Item.init(
         {
+            id: {
+                type: DataTypes.UUID,
+                primaryKey: true,
+                defaultValue: DataTypes.UUIDV4,
+                allowNull: false,
+                autoIncrement: false
+            },
+            menuId: DataTypes.STRING,
             name: DataTypes.STRING,
             description: DataTypes.STRING,
             price: DataTypes.DECIMAL,

@@ -9,12 +9,21 @@ module.exports = (sequelize, DataTypes) => {
          */
         static associate(models) {
             // define association here
-            this.belongsTo(models.Owner);
+            this.hasMany(models.Location);
+            this.belongsTo(models.Owner, { foreignKey: 'ownerId' });
         }
     }
     Restaurant.init(
         {
-            name: DataTypes.STRING
+            id: {
+                type: DataTypes.UUID,
+                primaryKey: true,
+                defaultValue: DataTypes.UUIDV4,
+                allowNull: false,
+                autoIncrement: false
+            },
+            name: DataTypes.STRING,
+            ownerId: DataTypes.STRING
         },
         {
             sequelize,
