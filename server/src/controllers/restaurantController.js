@@ -8,7 +8,6 @@ exports.getAllRestaurants = asyncHandler(async (req, res) => {
     return res
         .status(200)
         .json({ success: true, data: await Restaurant.findAll() });
-    res.send('getAllRestaurants');
 });
 
 exports.getRestaurantById = asyncHandler(async (req, res) => {
@@ -21,7 +20,7 @@ exports.getRestaurantById = asyncHandler(async (req, res) => {
 });
 
 exports.createNewRestaurant = asyncHandler(async (req, res) => {
-    const { name } = req.body;
+    const { name, OwnerId } = req.body;
 
     if (!name) {
         return res
@@ -29,12 +28,9 @@ exports.createNewRestaurant = asyncHandler(async (req, res) => {
             .json({ success: false, message: `name field is required.` });
     }
 
-    const restaurant = await Restaurant.create({ name });
+    const restaurant = await Restaurant.create({ ...req.body });
     if (!restaurant) {
-        return res.status(400).json({
-            success: false,
-            message: `restaurant not created.`
-        });
+        throw new ErrorResponse(`restaurant not created.`, 400);
     }
 
     res.status(201).json({ success: true, data: restaurant });

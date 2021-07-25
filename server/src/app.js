@@ -11,12 +11,14 @@ const errorHander = require('../utils/error');
 //--------Test Only TODO: remove later-------------//
 const { sequelize } = require('../models/index');
 const restaurantRoute = require('./routes/restaurantRoute');
+const ownerRoute = require('./routes/ownerRoute');
 //-------------------------------
 
 app.use(express.json());
 
 // add routes to app
 app.use('/api/v1/restaurants', restaurantRoute);
+app.use('/api/v1/owners', ownerRoute);
 
 app.get(
     '/',
