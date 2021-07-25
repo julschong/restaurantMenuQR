@@ -1,6 +1,6 @@
 const asyncHandler = require('express-async-handler');
 const { sequelize } = require('../../models');
-const ErrorResponse = require('../../utils/errorResponse');
+const ErrorResponse = require('../utils/errorResponse');
 
 const { Restaurant } = sequelize.models;
 

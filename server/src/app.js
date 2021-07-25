@@ -6,7 +6,7 @@ app.use(morgan('dev'));
 process.env.NODE_ENV == 'development' && app.use(morgan('tiny'));
 
 const asyncHandler = require('express-async-handler');
-const errorHander = require('../utils/error');
+const errorHander = require('./utils/error');
 
 //--------Test Only TODO: remove later-------------//
 const { sequelize } = require('../models/index');

@@ -3,8 +3,8 @@ const bcypt = require('bcrypt');
 const asyncHandler = require('express-async-handler');
 const { sequelize } = require('../../models');
 const owner = require('../../models/owner');
-const ErrorResponse = require('../../utils/errorResponse');
-const { removePassword } = require('../../utils/removePassword');
+const ErrorResponse = require('../utils/errorResponse');
+const { removePassword } = require('../utils/removePassword');
 
 const { Owner, Restaurant } = sequelize.models;
 
@@ -54,50 +54,50 @@ exports.registerNewOwner = asyncHandler(async (req, res) => {
     res.status(201).json({ success: true, data: owner });
 });
 
-// exports.deleteOwnerById = asyncHandler(async (req, res) => {
-//     const { id } = req.params;
+exports.deleteOwnerById = asyncHandler(async (req, res) => {
+    const { id } = req.params;
 
-//     if (!id) {
-//         return res
-//             .status(400)
-//             .json({ success: false, message: `id param is required` });
-//     }
+    if (!id) {
+        return res
+            .status(400)
+            .json({ success: false, message: `id param is required` });
+    }
 
-//     const restaurant = await Owner.destroy({ where: { id } });
+    const owner = await Owner.destroy({ where: { id } });
 
-//     if (!restaurant) {
-//         return res.status(404).json({
-//             success: false,
-//             message: `restaurant with id: ${id} is not found`
-//         });
-//     }
+    if (!owner) {
+        return res.status(404).json({
+            success: false,
+            message: `owner with id: ${id} is not found`
+        });
+    }
 
-//     res.status(200).json({ success: true, data: [] });
-// });
+    res.status(200).json({ success: true, data: [] });
+});
 
-// exports.updateOwnerById = asyncHandler(async (req, res) => {
-//     const { id } = req.params;
-//     const { name } = req.body;
+// TODO: add authorization to this route
+exports.updateOwnerById = asyncHandler(async (req, res) => {
+    const { id } = req.params;
+    const { userId, password, fullName } = req.body;
 
-//     if (!id) {
-//         throw new ErrorResponse(`id param is required`, 400);
-//     }
+    if (!id) {
+        throw new ErrorResponse(`id param is required`, 400);
+    }
 
-//     if (!name) {
-//         throw new ErrorResponse(`'name' field is required`, 400);
-//     }
+    let owner = await Owner.update(
+        { userId, password, fullName },
+        { where: { id } }
+    );
 
-//     let updated = await Owner.update({ name }, { where: { id } });
-//     console.log(updated);
+    if (!owner[0]) {
+        return res.status(404).json({
+            success: false,
+            message: `owner with id: ${id} is not found`
+        });
+    } else {
+        owner = await Owner.findOne({ where: { id } });
+        removePassword(owner);
+    }
 
-//     if (!updated[0]) {
-//         return res.status(404).json({
-//             success: false,
-//             message: `restaurant with id: ${id} is not found`
-//         });
-//     } else {
-//         updated = await Owner.findOne({ where: { id } });
-//     }
-
-//     res.status(200).json({ success: true, data: updated });
-// });
+    res.status(200).json({ success: true, data: owner });
+});
