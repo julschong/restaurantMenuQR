@@ -20,6 +20,16 @@ module.exports = {
             updatedAt: {
                 allowNull: false,
                 type: Sequelize.DATE
+            },
+            ownerId: {
+                type: Sequelize.STRING,
+                allowNull: false,
+                references: {
+                    model: 'Owners',
+                    key: 'id'
+                },
+                onUpdate: 'CASCADE',
+                onDelete: 'CASCADE'
             }
         });
     },
