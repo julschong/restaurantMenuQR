@@ -1,7 +1,6 @@
 const express = require('express');
 const ownerRoute = express.Router();
 
-const asyncHandler = require('express-async-handler');
 const {
     getAllOwners,
     registerNewOwner,

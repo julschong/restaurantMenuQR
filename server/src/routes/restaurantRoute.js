@@ -1,7 +1,6 @@
 const express = require('express');
 const restaurantRoute = express.Router();
 
-const asyncHandler = require('express-async-handler');
 const {
     getAllRestaurants,
     getRestaurantById,

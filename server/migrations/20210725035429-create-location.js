@@ -10,12 +10,13 @@ module.exports = {
             },
             RestaurantId: {
                 type: Sequelize.STRING,
+                allowNull: false,
                 references: {
                     model: 'Restaurants',
                     key: 'id'
                 },
                 onUpdate: 'CASCADE',
-                onDelete: 'SET NULL'
+                onDelete: 'CASCADE'
             },
             MenuId: {
                 type: Sequelize.STRING,
