@@ -6,14 +6,18 @@ const { Location } = sequelize.models;
 
 exports.getAllLocations = asyncHandler(async (req, res) => {
     const RestaurantId = req.query.restaurantId;
-
-    // if (!RestaurantId) {
+    const extractedQuery = {};
+    if (RestaurantId) {
+        extractedQuery['RestaurantId'] = RestaurantId;
+    }
+    // TODO: Restaurant ID is needed for getting location, getAll is only for development
+    // else {
     //     throw new ErrorResponse('RestarantId is requred', 400);
     // }
 
     return res.status(200).json({
         success: true,
-        data: await Location.findAll({ where: { RestaurantId } })
+        data: await Location.findAll({ where: { ...extractedQuery } })
     });
 });
 
@@ -80,18 +84,21 @@ exports.deleteLocationById = asyncHandler(async (req, res) => {
 
 exports.updateLocationById = asyncHandler(async (req, res) => {
     const { id } = req.params;
-    const { name } = req.body;
 
     if (!id) {
         throw new ErrorResponse(`id param is required`, 400);
     }
 
-    if (!name) {
-        throw new ErrorResponse(`'name' field is required`, 400);
-    }
+    const body = {};
+    const validBody = ['MenuId', 'address', 'phoneNumber'];
 
-    let updated = await Location.update({ name }, { where: { id } });
-    console.log(updated);
+    Object.keys(req.body).forEach((key) => {
+        if (validBody.includes(key)) {
+            body[key] = req.body[key];
+        }
+    });
+
+    let updated = await Location.update(body, { where: { id } });
 
     if (!updated[0]) {
         return res.status(404).json({

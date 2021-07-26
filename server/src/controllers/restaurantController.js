@@ -2,17 +2,21 @@ const asyncHandler = require('express-async-handler');
 const { sequelize } = require('../../models');
 const ErrorResponse = require('../utils/errorResponse');
 
-const { Restaurant } = sequelize.models;
+const { Restaurant, Location } = sequelize.models;
 
 exports.getAllRestaurants = asyncHandler(async (req, res) => {
-    return res
-        .status(200)
-        .json({ success: true, data: await Restaurant.findAll() });
+    return res.status(200).json({
+        success: true,
+        data: await Restaurant.findAll()
+    });
 });
 
 exports.getRestaurantById = asyncHandler(async (req, res) => {
     const { id } = req.params;
-    const restaurant = await Restaurant.findOne({ where: { id } });
+    const restaurant = await Restaurant.findOne({
+        where: { id },
+        include: Location
+    });
     if (!restaurant) {
         throw new ErrorResponse(`restaurant with id: ${id} is not found`, 400);
     }
