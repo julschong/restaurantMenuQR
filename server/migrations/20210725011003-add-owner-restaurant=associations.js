@@ -8,6 +8,15 @@ module.exports = {
          * Example:
          * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
          */
+        await queryInterface.addColumn('Restaurants', 'MenuId', {
+            type: Sequelize.STRING,
+            references: {
+                model: 'Menus',
+                key: 'id'
+            },
+            onUpdate: 'CASCADE',
+            onDelete: 'SET NULL'
+        });
         return queryInterface.addColumn('Restaurants', 'OwnerId', {
             type: Sequelize.STRING,
             references: {
@@ -26,6 +35,11 @@ module.exports = {
          * Example:
          * await queryInterface.dropTable('users');
          */
+        await queryInterface.removeColumn(
+            'Restaurants', // name of Source model
+            'menuId' // key we want to remove
+        );
+
         return queryInterface.removeColumn(
             'Restaurants', // name of Source model
             'ownerId' // key we want to remove

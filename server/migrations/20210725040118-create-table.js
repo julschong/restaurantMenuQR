@@ -7,10 +7,10 @@ module.exports = {
                 primaryKey: true,
                 type: Sequelize.STRING
             },
-            LocationId: {
+            RestaurantId: {
                 type: Sequelize.STRING,
                 references: {
-                    model: 'Locations',
+                    model: 'Restaurants',
                     key: 'id'
                 },
                 onUpdate: 'CASCADE',
