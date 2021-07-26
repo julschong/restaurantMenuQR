@@ -6,6 +6,37 @@ const ErrorResponse = require('../utils/errorResponse');
 const { removePassword } = require('../utils/removePassword');
 const { Owner } = sequelize.models;
 
+exports.refreshToken = asyncHandler(async (req, res) => {
+    let { refreshToken, accessToken } = req.body;
+
+    if (!jwt.verify(refreshToken, process.env.SECRET)) {
+        throw new ErrorResponse('Token Expired, please sign in again', 401);
+    }
+
+    const payload = jwt.decode(refreshToken);
+    delete payload.iat;
+    delete payload.exp;
+
+    refreshToken = jwt.sign(payload, process.env.SECRET, {
+        expiresIn: process.env.REFRESH_TOKEN_EXPIRE
+    });
+
+    accessToken = jwt.sign(payload, process.env.SECRET, {
+        expiresIn: process.env.ACCESS_TOKEN_EXPIRE
+    });
+
+    await Owner.update(
+        { refreshToken, accessToken },
+        { where: { id: payload.id } }
+    );
+
+    res.status(200).json({
+        success: true,
+        refreshToken,
+        accessToken
+    });
+});
+
 exports.signinOwner = asyncHandler(async (req, res) => {
     const { userId, password } = req.body;
 
@@ -16,22 +47,23 @@ exports.signinOwner = asyncHandler(async (req, res) => {
         );
     }
 
-    const passwordHash = bcrypt.hashSync(password, 10);
-
     const owner = await Owner.findOne({ where: { userId: userId } });
 
     if (!owner || !bcrypt.compareSync(password, owner.password)) {
         throw new ErrorResponse(`userId or password is incorrect`, 403);
     }
 
-    removePassword(owner);
+    const payload = {
+        id: owner.id,
+        userId: owner.userId
+    };
 
-    const refreshToken = jwt.sign(JSON.stringify(owner), process.env.SECRET, {
-        expiresIn: '2 days'
+    const refreshToken = jwt.sign(payload, process.env.SECRET, {
+        expiresIn: process.env.REFRESH_TOKEN_EXPIRE
     });
 
-    const accessToken = jwt.sign(JSON.stringify(owner), process.env.SECRET, {
-        expiresIn: 100
+    const accessToken = jwt.sign(payload, process.env.SECRET, {
+        expiresIn: process.env.ACCESS_TOKEN_EXPIRE
     });
 
     await Owner.update(
