@@ -12,7 +12,7 @@ const errorHander = require('./utils/error');
 const { sequelize } = require('../models/index');
 const restaurantRoute = require('./routes/restaurantRoute');
 const ownerRoute = require('./routes/ownerRoute');
-const locationRoute = require('./routes/locationRoute');
+const authRoute = require('./routes/authRoute');
 //-------------------------------
 
 app.use(express.json());
@@ -20,7 +20,7 @@ app.use(express.json());
 // add routes to app
 app.use('/api/v1/restaurants', restaurantRoute);
 app.use('/api/v1/owners', ownerRoute);
-app.use('/api/v1/locations', locationRoute);
+app.use('/api/v1/auth', authRoute);
 
 app.get(
     '/',

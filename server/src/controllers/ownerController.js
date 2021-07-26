@@ -31,29 +31,6 @@ exports.getOwnerById = asyncHandler(async (req, res) => {
     res.status(200).json({ success: true, data: owner });
 });
 
-exports.registerNewOwner = asyncHandler(async (req, res) => {
-    const { fullName, userId, password } = req.body;
-
-    if (!(fullName && userId && password)) {
-        throw new ErrorResponse(
-            `fullName, userId, password fields are required.`,
-            400
-        );
-    }
-
-    const passwordHash = bcypt.hashSync(password, 10);
-
-    const owner = await Owner.create({ ...req.body, password: passwordHash });
-
-    if (!owner) {
-        throw new ErrorResponse(`owner not created.`, 400);
-    }
-
-    removePassword(owner);
-
-    res.status(201).json({ success: true, data: owner });
-});
-
 exports.deleteOwnerById = asyncHandler(async (req, res) => {
     const { id } = req.params;
 

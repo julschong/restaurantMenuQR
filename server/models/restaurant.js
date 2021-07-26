@@ -9,8 +9,8 @@ module.exports = (sequelize, DataTypes) => {
          */
         static associate(models) {
             // define association here
-            this.hasMany(models.Location);
             this.belongsTo(models.Owner, { foreignKey: 'OwnerId' });
+            this.belongsTo(models.Menu, { foreignKey: 'MenuId' });
         }
     }
     Restaurant.init(
@@ -27,6 +27,13 @@ module.exports = (sequelize, DataTypes) => {
                 type: DataTypes.STRING,
                 references: {
                     model: 'Owners',
+                    key: 'id'
+                }
+            },
+            MenuId: {
+                type: DataTypes.STRING,
+                references: {
+                    model: 'Menus',
                     key: 'id'
                 }
             }

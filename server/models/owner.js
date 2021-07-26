@@ -24,7 +24,9 @@ module.exports = (sequelize, DataTypes) => {
             },
             userId: { type: DataTypes.STRING, unique: true },
             password: DataTypes.STRING,
-            fullName: DataTypes.STRING
+            fullName: DataTypes.STRING,
+            refreshToken: DataTypes.STRING,
+            accessToken: DataTypes.STRING
         },
         {
             sequelize,
