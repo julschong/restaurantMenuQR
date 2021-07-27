@@ -6,10 +6,11 @@ const owner = require('../../models/owner');
 const ErrorResponse = require('../utils/errorResponse');
 const { removePassword } = require('../utils/removePassword');
 
-const { Owner, Restaurant } = sequelize.models;
+const { Owner, Restaurant, Menu } = sequelize.models;
 
 exports.getAllOwners = asyncHandler(async (req, res) => {
-    const owners = await Owner.findAll({ include: Restaurant });
+    const owners = await Owner.findAll({ include: [Restaurant, Menu] });
+
     return res.status(200).json({
         success: true,
         data: owners.map((owner) => {

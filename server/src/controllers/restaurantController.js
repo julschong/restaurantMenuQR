@@ -4,13 +4,15 @@ const ErrorResponse = require('../utils/errorResponse');
 
 const { Restaurant } = sequelize.models;
 
-exports.getAllRestaurants = asyncHandler(async (req, res) => {
+// Protect Route
+exports.getOwnerRestaurants = asyncHandler(async (req, res) => {
     return res.status(200).json({
         success: true,
         data: await Restaurant.findAll()
     });
 });
 
+// Protect Route
 exports.getRestaurantById = asyncHandler(async (req, res) => {
     const { id } = req.params;
     const restaurant = await Restaurant.findOne({
@@ -22,6 +24,7 @@ exports.getRestaurantById = asyncHandler(async (req, res) => {
     res.status(200).json({ success: true, data: restaurant });
 });
 
+// Protect Route
 exports.createNewRestaurant = asyncHandler(async (req, res) => {
     const { name, OwnerId } = req.body;
 
@@ -39,6 +42,7 @@ exports.createNewRestaurant = asyncHandler(async (req, res) => {
     res.status(201).json({ success: true, data: restaurant });
 });
 
+// Protect Route
 exports.deleteRestaurantById = asyncHandler(async (req, res) => {
     const { id } = req.params;
 
@@ -60,6 +64,7 @@ exports.deleteRestaurantById = asyncHandler(async (req, res) => {
     res.status(200).json({ success: true, data: [] });
 });
 
+// Protect Route
 exports.updateRestaurantById = asyncHandler(async (req, res) => {
     const { id } = req.params;
     const { name } = req.body;

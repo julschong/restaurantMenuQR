@@ -7,6 +7,10 @@ const {
     updateOwnerById,
     deleteOwnerById
 } = require('../controllers/ownerController');
+const { privateAuthorization } = require('../utils/authorization');
+
+// Protected Route
+ownerRoute.use(privateAuthorization);
 
 ownerRoute.route('/').get(getAllOwners);
 ownerRoute

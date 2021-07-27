@@ -22,7 +22,11 @@ module.exports = (sequelize, DataTypes) => {
                 autoIncrement: false
             },
             title: DataTypes.STRING,
-            bannerURL: DataTypes.STRING
+            bannerURL: DataTypes.STRING,
+            OwnerId: {
+                type: DataTypes.STRING,
+                allowNull: false
+            }
         },
         {
             sequelize,

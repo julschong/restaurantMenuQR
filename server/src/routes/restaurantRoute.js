@@ -2,14 +2,17 @@ const express = require('express');
 const restaurantRoute = express.Router();
 
 const {
-    getAllRestaurants,
     getRestaurantById,
     createNewRestaurant,
     deleteRestaurantById,
-    updateRestaurantById
+    updateRestaurantById,
+    getOwnerRestaurants
 } = require('../controllers/restaurantController');
+const { privateAuthorization } = require('../utils/authorization');
 
-restaurantRoute.route('/').get(getAllRestaurants).post(createNewRestaurant);
+restaurantRoute.use(privateAuthorization); // Protect Route
+
+restaurantRoute.route('/').get(getOwnerRestaurants).post(createNewRestaurant);
 restaurantRoute
     .route('/:id')
     .get(getRestaurantById)
