@@ -3,7 +3,7 @@ import { Text } from '@chakra-ui/react';
 import { IoRestaurant } from 'react-icons/io5';
 import { Switch } from 'react-router';
 import Links from '../Links';
-import './header.scss';
+import './Header.scss';
 
 const Header = () => {
     return (

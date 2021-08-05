@@ -1,21 +1,22 @@
 import { BrowserRouter as Link } from 'react-router-dom';
+import './Links.scss';
 
 const Links = () => {
     return (
-        <ul>
+        <ul id="navbar-links">
             <li>
                 <Link to="/">
                     <a href="/">Home</a>
                 </Link>
             </li>
             <li>
-                <Link to="/edit">
-                    <a href="/edit">Edit</a>
+                <Link to="/add">
+                    <a href="/add">Add</a>
                 </Link>
             </li>
             <li>
-                <Link to="/preview">
-                    <a href="/preview">Preview</a>
+                <Link to="/edit">
+                    <a href="/edit">Edit</a>
                 </Link>
             </li>
         </ul>
