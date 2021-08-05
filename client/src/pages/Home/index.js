@@ -1,5 +1,5 @@
-import { SimpleGrid } from '@chakra-ui/react';
-import { imgURL } from '../../helper/test';
+import { SimpleGrid, Container } from '@chakra-ui/react';
+import { imgURL } from '../../data/data';
 import RestaurantContainer from './../../components/RestaurantContainer';
 import './home.scss';
 
@@ -8,11 +8,13 @@ console.log(imgURL);
 const Home = () => {
     return (
         <div className="homepage">
-            <SimpleGrid columns={2} spacing={0} gap={10}>
-                {imgURL.map((url, i) => (
-                    <RestaurantContainer url={url} key={`image${i}`} />
-                ))}
-            </SimpleGrid>
+            <Container maxWidth="80vw">
+                <SimpleGrid columns={2} spacing={0} gap={10}>
+                    {imgURL.map((el, i) => (
+                        <RestaurantContainer url={el.url} key={`image${i}`} />
+                    ))}
+                </SimpleGrid>
+            </Container>
         </div>
     );
 };
