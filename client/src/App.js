@@ -1,12 +1,28 @@
-import * as React from 'react';
+import React from 'react';
 // 1. import `ChakraProvider` component
-import { Button, ChakraProvider } from '@chakra-ui/react';
+import { Button } from '@chakra-ui/react';
+
+import Header from './components/Header/';
+import { Switch, Route } from 'react-router-dom';
+
 function App() {
     // 2. Use at the root of your app
     return (
-        <ChakraProvider>
+        <>
+            <Header />
             <Button colorScheme="blue">Button</Button>
-        </ChakraProvider>
+            <Switch>
+                <Route exact path="/">
+                    Home
+                </Route>
+                <Route exact path="/edit">
+                    Edit
+                </Route>
+                <Route exact path="/preview">
+                    Preview
+                </Route>
+            </Switch>
+        </>
     );
 }
 export default App;
