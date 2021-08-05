@@ -1,7 +1,6 @@
 import { Flex } from '@chakra-ui/layout';
 import { Text } from '@chakra-ui/react';
 import { IoRestaurant } from 'react-icons/io5';
-import { Switch } from 'react-router';
 import Links from '../Links';
 import './Header.scss';
 
