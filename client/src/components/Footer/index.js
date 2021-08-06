@@ -29,6 +29,7 @@ const Footer = () => {
                     <Link
                         href="https://www.linkedin.com/in/julius-lee-15934a133/"
                         align="center"
+                        ml={3}
                     >
                         <AiOutlineLinkedin color="white" size={45} />
                     </Link>

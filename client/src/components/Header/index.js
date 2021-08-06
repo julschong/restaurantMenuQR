@@ -1,14 +1,15 @@
 import { Flex } from '@chakra-ui/layout';
-import { Link, Text } from '@chakra-ui/react';
+import { Text } from '@chakra-ui/react';
 import { IoRestaurant } from 'react-icons/io5';
 import Links from '../Links';
 import './Header.scss';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
     return (
         <header>
             <Flex id="navbar" bg="#DDD">
-                <Link href="/" id="brand-container">
+                <Link to="/" id="brand-container">
                     <Flex>
                         <IoRestaurant id="logo" color="#A00" />
                         <Text id="app-name">Menu</Text>
