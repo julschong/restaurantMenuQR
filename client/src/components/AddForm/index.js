@@ -1,4 +1,4 @@
-import { Button, Grid } from '@chakra-ui/react';
+import { Button, Grid, useToast } from '@chakra-ui/react';
 import { Formik, Form } from 'formik';
 import { useHistory } from 'react-router';
 import FormField from '../FormField';
@@ -29,11 +29,18 @@ function validateAddress(value) {
 
 const AddForm = () => {
     const history = useHistory();
+    const toast = useToast();
     return (
         <Formik
             initialValues={{ name: '', phone: '', address: '' }}
             onSubmit={(values, actions) => {
                 values.url = 'https://i.stack.imgur.com/y9DpT.jpg';
+                toast({
+                    title: 'Restaurant added',
+                    description:
+                        'You can start adding menu items and choose your background on the Menu!',
+                    isClosable: true
+                });
                 setTimeout(() => {
                     alert(JSON.stringify(values, null, 2));
                     actions.setSubmitting(false);
@@ -79,8 +86,11 @@ const AddForm = () => {
                         >
                             Submit
                         </Button>
-                        <Button mt={6} colorScheme="gray" type="submit">
+                        <Button mt={6} colorScheme="gray" type="reset">
                             Cancel
+                        </Button>
+                        <Button mt={6} colorScheme="gray">
+                            Show Toast
                         </Button>
                     </Grid>
                 </Form>

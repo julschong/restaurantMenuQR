@@ -1,3 +1,13 @@
 .homepage {
     margin-top: 24px;
+    .gallery {
+        max-width: 80vw;
+        gap: 10px;
+    }
+
+    @media (max-width: 600px) {
+        .gallery {
+            grid-template-columns: 1fr;
+        }
+    }
 }

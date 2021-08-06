@@ -1,19 +1,26 @@
-import { SimpleGrid, Container } from '@chakra-ui/react';
+import { Container, Grid, useMediaQuery } from '@chakra-ui/react';
 import { imgURL } from '../../data/data';
 import RestaurantContainer from './../../components/RestaurantContainer';
 import './home.scss';
+import { useSelector } from 'react-redux';
 
 console.log(imgURL);
 
 const Home = () => {
+    const restaurants = useSelector((state) => state.restaurants.restaurants);
+    console.log(restaurants);
+
     return (
         <div className="homepage">
             <Container maxWidth="80vw">
-                <SimpleGrid columns={2} spacing={0} gap={10}>
-                    {imgURL.map((el, i) => (
-                        <RestaurantContainer url={el.url} key={`image${i}`} />
+                <Grid className="gallery" justify="center">
+                    {restaurants.map((el, i) => (
+                        <RestaurantContainer
+                            el={el}
+                            key={`image${i}${el.name}`}
+                        />
                     ))}
-                </SimpleGrid>
+                </Grid>
             </Container>
         </div>
     );

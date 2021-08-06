@@ -1,8 +1,17 @@
-.img-crop {
-    img {
-        width: 100%;
-        height: 60vh;
-        object-fit: cover;
-        object-position: 50% 80%;
-    }
+div {
+}
+
+.restaurant-cell {
+    border: 1px solid gray;
+    border-radius: 5px;
+}
+
+.link {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+
+    word-break: break-word;
+
+    /* Adds a hyphen where the word breaks, if supported (No Blink) */
+    hyphens: auto;
 }
