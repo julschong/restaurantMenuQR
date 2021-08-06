@@ -1,9 +1,21 @@
 import { Box, Image, Link, Text } from '@chakra-ui/react';
+import { useState } from 'react';
 import './container.scss';
 
 const RestaurantContainer = ({ el }) => {
+    const [bg, setBg] = useState(() => '');
+
     return (
-        <Box className="restaurant-cell" p={4} display={{ md: 'flex' }}>
+        <Box
+            className="restaurant-cell"
+            p={4}
+            display={{ md: 'flex' }}
+            cursor="pointer"
+            bg={bg}
+            onMouseEnter={() => setBg('blue.50')}
+            onMouseLeave={() => setBg('')}
+            onClick={() => window.open(el.url, '_blank').focus()}
+        >
             <Box flexShrink={0}>
                 <Image
                     borderRadius="lg"

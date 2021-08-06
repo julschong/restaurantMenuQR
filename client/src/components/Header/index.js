@@ -4,18 +4,35 @@ import { IoRestaurant } from 'react-icons/io5';
 import Links from '../Links';
 import './Header.scss';
 import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { PATHS } from './../Links/index';
 
 const Header = () => {
+    const [currentPage, setCurrentPage] = useState('');
+
+    useEffect(() => {
+        setCurrentPage(document.location.pathname);
+    }, []);
+
     return (
         <header>
             <Flex id="navbar" bg="#DDD">
-                <Link to="/" id="brand-container">
+                <Link
+                    to={PATHS.HOME}
+                    id="brand-container"
+                    onClick={() => {
+                        setCurrentPage(PATHS.HOME);
+                    }}
+                >
                     <Flex>
                         <IoRestaurant id="logo" color="#A00" />
                         <Text id="app-name">Menu</Text>
                     </Flex>
                 </Link>
-                <Links />
+                <Links
+                    currentPage={currentPage}
+                    setCurrentPage={setCurrentPage}
+                />
             </Flex>
         </header>
     );

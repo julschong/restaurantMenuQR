@@ -1,17 +1,55 @@
 import { Link } from 'react-router-dom';
 import './Links.scss';
 
-const Links = () => {
+export const PATHS = Object.freeze({
+    HOME: '/',
+    ADD: '/add',
+    EDIT: '/edit'
+});
+
+const Links = ({ currentPage, setCurrentPage }) => {
     return (
         <ul id="navbar-links">
             <li>
-                <Link to="/">Home</Link>
+                <Link
+                    to={PATHS.HOME}
+                    onClick={() => {
+                        setCurrentPage(PATHS.HOME);
+                    }}
+                    style={{
+                        textDecoration:
+                            currentPage === PATHS.HOME && 'underline'
+                    }}
+                >
+                    Home
+                </Link>
             </li>
             <li>
-                <Link to="/add">Add</Link>
+                <Link
+                    to={PATHS.ADD}
+                    onClick={() => {
+                        setCurrentPage(PATHS.ADD);
+                    }}
+                    style={{
+                        textDecoration: currentPage === PATHS.ADD && 'underline'
+                    }}
+                >
+                    Add
+                </Link>
             </li>
             <li>
-                <Link to="/edit">Edit</Link>
+                <Link
+                    to={PATHS.EDIT}
+                    onClick={() => {
+                        setCurrentPage(PATHS.EDIT);
+                    }}
+                    style={{
+                        textDecoration:
+                            currentPage === PATHS.EDIT && 'underline'
+                    }}
+                >
+                    Edit
+                </Link>
             </li>
         </ul>
     );
