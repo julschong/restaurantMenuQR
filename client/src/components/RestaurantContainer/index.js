@@ -22,6 +22,12 @@ const RestaurantContainer = ({ el }) => {
                 >
                     {el.name}
                 </Text>
+                <Text mt={2} color="gray.500">
+                    {el.phone}
+                </Text>
+                <Text mt={2} color="gray.500">
+                    {el.address}
+                </Text>
                 <Link
                     className="link"
                     mt={1}
@@ -34,9 +40,7 @@ const RestaurantContainer = ({ el }) => {
                     {el.url}
                 </Link>
                 <Text mt={2} color="gray.500">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Dolorum harum ad ab. Quidem repellendus voluptatem expedita
-                    cum ducimus. Unde, nisi dolorum. Ab optio aspernatur alias!.
+                    {el.description}
                 </Text>
             </Box>
         </Box>

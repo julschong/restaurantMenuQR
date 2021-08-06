@@ -3,19 +3,23 @@ import Home from './Home/index';
 import Add from './Add/index';
 import Edit from './Edit/index';
 
+import './pages.scss';
+
 const Pages = () => {
     return (
-        <Switch>
-            <Route exact path="/">
-                <Home />
-            </Route>
-            <Route path="/add">
-                <Add />
-            </Route>
-            <Route path="/edit">
-                <Edit />
-            </Route>
-        </Switch>
+        <main>
+            <Switch>
+                <Route exact path="/">
+                    <Home />
+                </Route>
+                <Route path="/add">
+                    <Add />
+                </Route>
+                <Route path="/edit">
+                    <Edit />
+                </Route>
+            </Switch>
+        </main>
     );
 };
 

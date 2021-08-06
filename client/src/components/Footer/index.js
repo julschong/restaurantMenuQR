@@ -8,7 +8,7 @@ const Footer = () => {
         <footer>
             <Flex
                 bg="blue.900"
-                height={250}
+                height={150}
                 justify="center"
                 align="center"
                 direction="column"

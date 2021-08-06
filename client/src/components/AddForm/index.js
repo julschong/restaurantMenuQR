@@ -2,39 +2,33 @@ import { Button, Grid, useToast } from '@chakra-ui/react';
 import { Formik, Form } from 'formik';
 import { useHistory } from 'react-router';
 import FormField from '../FormField';
-
-function validateName(value) {
-    let error;
-    if (!value) {
-        error = 'Restaurant Name is required';
-    }
-    return error;
-}
-
-function validatePhone(value) {
-    let error;
-    if (!value) {
-        error = 'Phone Number is required';
-    }
-    return error;
-}
-
-function validateAddress(value) {
-    let error;
-    if (!value) {
-        error = 'Address is required';
-    }
-    return error;
-}
+import { useDispatch } from 'react-redux';
+import { addRestaurants } from './../../stores/actions/restaurantsActions';
+import {
+    validateName,
+    validatePhone,
+    validateAddress,
+    validateURL,
+    validateDesc
+} from './formValidate';
 
 const AddForm = () => {
     const history = useHistory();
     const toast = useToast();
+
+    const dispatch = useDispatch();
+
     return (
         <Formik
-            initialValues={{ name: '', phone: '', address: '' }}
+            initialValues={{
+                name: '',
+                phone: '',
+                address: '',
+                url: '',
+                description: ''
+            }}
             onSubmit={(values, actions) => {
-                values.url = 'https://i.stack.imgur.com/y9DpT.jpg';
+                dispatch(addRestaurants(values));
                 toast({
                     title: 'Restaurant added',
                     description:
@@ -42,7 +36,7 @@ const AddForm = () => {
                     isClosable: true
                 });
                 setTimeout(() => {
-                    alert(JSON.stringify(values, null, 2));
+                    // alert(JSON.stringify(values, null, 2));
                     actions.setSubmitting(false);
                     history.push('/');
                 }, 1000);
@@ -77,6 +71,24 @@ const AddForm = () => {
                         type="address"
                     />
 
+                    <FormField
+                        mt={4}
+                        fieldName="url"
+                        validate={validateURL}
+                        label="Image URL"
+                        placeholder="URL"
+                        type="url"
+                    />
+
+                    <FormField
+                        mt={4}
+                        fieldName="description"
+                        validate={validateDesc}
+                        label="Description"
+                        placeholder="Description"
+                        type="text"
+                    />
+
                     <Grid templateColumns="repeat(2, 1fr)" gap={1}>
                         <Button
                             mt={6}
@@ -88,9 +100,6 @@ const AddForm = () => {
                         </Button>
                         <Button mt={6} colorScheme="gray" type="reset">
                             Cancel
-                        </Button>
-                        <Button mt={6} colorScheme="gray">
-                            Show Toast
                         </Button>
                     </Grid>
                 </Form>

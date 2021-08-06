@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import './global.scss';
+
 import { ChakraProvider } from '@chakra-ui/react';
 import store from './stores/store';
 import { Provider } from 'react-redux';

@@ -6,13 +6,17 @@ import './Header.scss';
 
 const Header = () => {
     return (
-        <Flex id="navbar" bg="#DDD">
-            <Link href="/">
-                <IoRestaurant id="logo" color="#A00" />
-            </Link>
-            <Text id="app-name">Menu</Text>
-            <Links />
-        </Flex>
+        <header>
+            <Flex id="navbar" bg="#DDD">
+                <Link href="/" id="brand-container">
+                    <Flex>
+                        <IoRestaurant id="logo" color="#A00" />
+                        <Text id="app-name">Menu</Text>
+                    </Flex>
+                </Link>
+                <Links />
+            </Flex>
+        </header>
     );
 };
 

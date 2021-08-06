@@ -1,4 +1,4 @@
-import { GET_RESTAURANTS } from '../types';
+import { ADD_RESTAURANTS, GET_RESTAURANTS } from '../types';
 
 const initialState = {
     restaurants: [],
@@ -11,6 +11,12 @@ const restaurantReducer = (state = initialState, action) => {
             return {
                 ...state,
                 restaurants: action.payload,
+                loading: false
+            };
+        case ADD_RESTAURANTS:
+            return {
+                ...state,
+                restaurants: [...state.restaurants, action.payload],
                 loading: false
             };
         default:

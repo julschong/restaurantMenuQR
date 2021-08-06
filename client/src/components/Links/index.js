@@ -1,23 +1,17 @@
-import { BrowserRouter as Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './Links.scss';
 
 const Links = () => {
     return (
         <ul id="navbar-links">
             <li>
-                <Link to="/">
-                    <a href="/">Home</a>
-                </Link>
+                <Link to="/">Home</Link>
             </li>
             <li>
-                <Link to="/add">
-                    <a href="/add">Add</a>
-                </Link>
+                <Link to="/add">Add</Link>
             </li>
             <li>
-                <Link to="/edit">
-                    <a href="/edit">Edit</a>
-                </Link>
+                <Link to="/edit">Edit</Link>
             </li>
         </ul>
     );
