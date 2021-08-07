@@ -37,9 +37,10 @@ const RestaurantContainer = ({ el }) => {
                     <Text
                         fontWeight="bold"
                         textTransform="uppercase"
-                        fontSize="sm"
+                        fontSize="2xl"
                         letterSpacing="wide"
                         color="teal.600"
+                        fontFamily="Roboto Slab"
                     >
                         {el.name}
                     </Text>

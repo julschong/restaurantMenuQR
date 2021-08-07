@@ -26,7 +26,14 @@ const Header = () => {
                 >
                     <Flex>
                         <IoRestaurant id="logo" color="#A00" />
-                        <Text id="app-name">Menu</Text>
+                        <Text
+                            id="app-name"
+                            userSelect="none"
+                            fontFamily="'MonteCarlo',cursive"
+                            fontWeight="bold"
+                        >
+                            Menu
+                        </Text>
                     </Flex>
                 </Link>
                 <Links
