@@ -12,6 +12,7 @@ const Links = ({ currentPage, setCurrentPage }) => {
         <ul id="navbar-links">
             <li>
                 <Link
+                    className="links"
                     to={PATHS.HOME}
                     onClick={() => {
                         setCurrentPage(PATHS.HOME);
@@ -26,6 +27,7 @@ const Links = ({ currentPage, setCurrentPage }) => {
             </li>
             <li>
                 <Link
+                    className="links"
                     to={PATHS.ADD}
                     onClick={() => {
                         setCurrentPage(PATHS.ADD);
