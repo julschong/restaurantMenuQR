@@ -29,6 +29,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "dev": "concurrently --kill-others \"npm run start\" \"npm run db\"",
     "db": "json-server --watch src/data/db.json --port 3003",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -63,6 +64,7 @@
     ]
   },
   "devDependencies": {
+    "concurrently": "^6.2.0",
     "json-server": "^0.16.3"
   }
 }

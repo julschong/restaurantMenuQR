@@ -1,6 +1,11 @@
 .restaurant-cell {
     border: 1px solid gray;
     border-radius: 5px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+    .restaurant-content-container {
+        position: relative;
+        flex-grow: 1;
+    }
 }
 
 .link {
@@ -11,4 +16,13 @@
 
     /* Adds a hyphen where the word breaks, if supported (No Blink) */
     hyphens: auto;
+}
+
+.button-group {
+    position: absolute;
+    top: 0px;
+    right: 70px;
+    button {
+        min-width: 60px;
+    }
 }

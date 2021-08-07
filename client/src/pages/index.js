@@ -15,7 +15,7 @@ const Pages = () => {
                 <Route path="/add">
                     <Add />
                 </Route>
-                <Route path="/edit">
+                <Route path="/edit/:id">
                     <Edit />
                 </Route>
             </Switch>

@@ -37,20 +37,6 @@ const Links = ({ currentPage, setCurrentPage }) => {
                     Add
                 </Link>
             </li>
-            <li>
-                <Link
-                    to={PATHS.EDIT}
-                    onClick={() => {
-                        setCurrentPage(PATHS.EDIT);
-                    }}
-                    style={{
-                        textDecoration:
-                            currentPage === PATHS.EDIT && 'underline'
-                    }}
-                >
-                    Edit
-                </Link>
-            </li>
         </ul>
     );
 };
