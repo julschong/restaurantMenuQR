@@ -1,4 +1,4 @@
-import { Container, Grid, useMediaQuery } from '@chakra-ui/react';
+import { Container, Grid } from '@chakra-ui/react';
 import { imgURL } from '../../data/data';
 import RestaurantContainer from './../../components/RestaurantContainer';
 import './home.scss';
@@ -8,7 +8,6 @@ console.log(imgURL);
 
 const Home = () => {
     const restaurants = useSelector((state) => state.restaurants.restaurants);
-    console.log(restaurants);
 
     return (
         <div className="homepage">

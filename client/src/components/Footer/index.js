@@ -1,4 +1,4 @@
-import { Link, Text, Box, Spacer } from '@chakra-ui/react';
+import { Link, Text } from '@chakra-ui/react';
 
 import { AiOutlineGithub, AiOutlineLinkedin } from 'react-icons/ai';
 import { Flex } from '@chakra-ui/layout';

@@ -21,6 +21,7 @@ const RestaurantContainer = ({ el }) => {
             >
                 <Box flexShrink={0}>
                     <Image
+                        fallbackSrc="/asset/Blank_image.jpg"
                         borderRadius="lg"
                         width={{ md: 60 }}
                         height={{ md: 60 }}
@@ -67,7 +68,7 @@ const RestaurantContainer = ({ el }) => {
                         <Button
                             colorScheme="gray"
                             className="edit-link"
-                            onClick={() => history.push('/edit')}
+                            onClick={() => history.push(`/edit/${el.id}`)}
                             ml={6}
                         >
                             Edit
