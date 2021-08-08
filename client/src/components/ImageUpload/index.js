@@ -11,9 +11,6 @@ const ImageUpload = () => {
         setURL(pictureDataURLs);
     };
 
-    console.log(pictures);
-    console.log(dataURL);
-
     return (
         <>
             <ImageUploader

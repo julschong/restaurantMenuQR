@@ -1,4 +1,13 @@
 {
+    "menu": [{
+        "restaurantId": "1",
+        "categoryId": "0",
+        "name":"Popcorn Chicken",
+        "desc": "Popcorn Chicken made with a secret ingredient for super light and crisp texture. Served with honey mustard or your choice of dipping sauce, they’re absolutely addicting!",
+        "imgURL": "https://www.onionringsandthings.com/wp-content/uploads/2015/08/popcorn-chicken.jpg",
+        "price": 800
+    }],
+    "category": [],
     "restaurants": [
         {
             "id":"1",
