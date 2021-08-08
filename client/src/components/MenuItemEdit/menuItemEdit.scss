@@ -8,11 +8,17 @@
     width: 200px !important;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 900px) {
     .item-edit-container {
         flex-direction: column;
     }
     .field-box {
-        max-width: 70% !important;
+        max-width: 90% !important;
+    }
+}
+
+@media (hover: none) {
+    .desc-textbox {
+        overflow: hidden;
     }
 }

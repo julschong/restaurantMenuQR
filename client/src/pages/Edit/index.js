@@ -43,30 +43,35 @@ const Edit = () => {
     }
 
     return (
-        <Container maxWidth="80vw">
-            <Flex>
-                <IoIosArrowBack
-                    cursor="pointer"
-                    size={40}
-                    onClick={() => history.push(PATHS.HOME)}
-                />
-                <Image />
-                <Flex direction="column" width="100%">
-                    <Text fontSize="3xl" className="title">
-                        {restaurant.name}
-                    </Text>
-                    {categories.map((cat, i) => {
-                        return (
-                            <Category
-                                menuItems={menuItems}
-                                cat={cat}
-                                key={`${cat.name}${i}`}
-                            />
-                        );
-                    })}
+        <Container maxW="container.xl">
+            <IoIosArrowBack
+                cursor="pointer"
+                size={40}
+                onClick={() => history.push(PATHS.HOME)}
+                style={{ flexShrink: 0 }}
+            />
+            <Flex direction="column" width="100%">
+                <Text
+                    fontWeight="bold"
+                    textTransform="uppercase"
+                    fontSize="3xl"
+                    letterSpacing="wide"
+                    color="teal.600"
+                    fontFamily="Roboto Slab"
+                >
+                    {restaurant.name}
+                </Text>
+                {categories.map((cat, i) => {
+                    return (
+                        <Category
+                            menuItems={menuItems}
+                            cat={cat}
+                            key={`${cat.name}${i}`}
+                        />
+                    );
+                })}
 
-                    {/* <ImageUpload /> */}
-                </Flex>
+                {/* <ImageUpload /> */}
             </Flex>
         </Container>
     );
