@@ -10,11 +10,11 @@ import {
 } from '@chakra-ui/number-input';
 import { Textarea } from '@chakra-ui/textarea';
 
-import './menuItemEdit.scss';
+import './menuItemView.scss';
 import { Box } from '@chakra-ui/react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-const MenuItemEdit = ({ item, i }) => {
+const MenuItemView = ({ item, i }) => {
     const [bg, setBG] = useState('');
     const [active, setActive] = useState(false);
     const ref = useRef();
@@ -43,16 +43,14 @@ const MenuItemEdit = ({ item, i }) => {
             bg={bg}
             onClick={(e) => setActive(true)}
         >
-            <Box boxSize="200px" mr={4} overflow="hidden">
-                <Image
-                    className="item-img"
-                    fallbackSrc="/asset/Blank_image.jpg"
-                    borderRadius="lg"
-                    src={item.imgURL}
-                    alt={item.name}
-                    objectFit="cover"
-                />
-            </Box>
+            <Image
+                className="item-img"
+                fallbackSrc="/asset/Blank_image.jpg"
+                borderRadius="lg"
+                src={item.imgURL}
+                alt={item.name}
+                mr={3}
+            />
             <Flex direction="column" minWidth="200px" flexGrow={1}>
                 <Box className="field-box">
                     <label>Name: </label>
@@ -89,4 +87,4 @@ const MenuItemEdit = ({ item, i }) => {
     );
 };
 
-export default MenuItemEdit;
+export default MenuItemView;

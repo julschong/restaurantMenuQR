@@ -1,22 +1,17 @@
-import { useParams, useHistory } from 'react-router-dom';
-import { Container, Text } from '@chakra-ui/react';
-import { Image } from '@chakra-ui/image';
+import './view.scss';
+import { Container } from '@chakra-ui/react';
 import { IoIosArrowBack } from 'react-icons/io';
-import { useSelector, useDispatch } from 'react-redux';
-import { VscLoading } from 'react-icons/vsc';
-
-import './edit.scss';
-import { Flex } from '@chakra-ui/layout';
+import { useHistory, useParams } from 'react-router-dom';
 import { PATHS } from './../../components/Links/index';
+import { Flex, Text } from '@chakra-ui/layout';
 import { useEffect, useState } from 'react';
-import Category from '../../components/Category';
-import { getMenus, reloadMenu } from './../../stores/actions/menuItemsActions';
-import {
-    getCategories,
-    reloadCategory
-} from './../../stores/actions/categoryActions';
+import axios from 'axios';
+import { useSelector } from 'react-redux';
+import { VscLoading } from 'react-icons/vsc';
+import Category from './../../components/Category/index';
+import CategoryView from './../../components/CategoryView/index';
 
-const Edit = () => {
+const View = () => {
     const { id } = useParams();
     const history = useHistory();
 
@@ -24,36 +19,33 @@ const Edit = () => {
         (state) =>
             state.restaurants.restaurants.filter((rest) => rest.id === id)[0]
     );
-    const [pageLoad, setLoad] = useState(false);
 
-    const dispatch = useDispatch();
-    const menus = useSelector((state) => state.menus);
-    const categories = useSelector((state) => state.categories);
+    const [menuItems, setMenu] = useState(null);
+    const [categories, setCategories] = useState(null);
 
     useEffect(() => {
-        dispatch(getCategories(id));
-        dispatch(getMenus(id));
-        setLoad(true);
-    }, [id, dispatch]);
+        axios.get('http://localhost:3003/menu').then((res) => {
+            setMenu(res.data.filter((el) => el.restaurantId === id));
+        });
 
-    if (!restaurant || menus.loading || categories.loading || !pageLoad) {
+        axios.get('http://localhost:3003/category').then((res) => {
+            setCategories(res.data.filter((el) => el.restaurantId === id));
+        });
+    }, [id]);
+
+    if (!restaurant || !menuItems || !categories) {
         return (
             <div className="loading">
                 <VscLoading className="load-icon" size="10%" />
             </div>
         );
     }
-
     return (
         <Container maxW="container.xl">
             <IoIosArrowBack
                 cursor="pointer"
                 size={40}
-                onClick={() => {
-                    history.push(PATHS.HOME);
-                    dispatch(reloadCategory());
-                    dispatch(reloadMenu());
-                }}
+                onClick={() => history.push(PATHS.HOME)}
                 style={{ flexShrink: 0 }}
             />
             <Flex direction="column" width="100%">
@@ -67,20 +59,18 @@ const Edit = () => {
                 >
                     {restaurant.name}
                 </Text>
-                {categories.categories.map((cat, i) => {
+                {categories.map((cat, i) => {
                     return (
-                        <Category
-                            menuItems={menus.menus}
+                        <CategoryView
+                            menuItems={menuItems}
                             cat={cat}
                             key={`${cat.name}${i}`}
                         />
                     );
                 })}
-
-                {/* <ImageUpload /> */}
             </Flex>
         </Container>
     );
 };
 
-export default Edit;
+export default View;

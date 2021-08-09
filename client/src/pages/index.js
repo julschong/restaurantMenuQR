@@ -4,6 +4,7 @@ import Add from './Add/index';
 import Edit from './Edit/index';
 
 import './pages.scss';
+import View from './View/index';
 
 const Pages = () => {
     return (
@@ -17,6 +18,9 @@ const Pages = () => {
                 </Route>
                 <Route path="/edit/:id">
                     <Edit />
+                </Route>
+                <Route path="/view/:id">
+                    <View />
                 </Route>
             </Switch>
         </main>

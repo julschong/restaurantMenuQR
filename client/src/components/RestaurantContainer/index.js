@@ -61,7 +61,7 @@ const RestaurantContainer = ({ el }) => {
                             colorScheme="teal"
                             className="edit-link"
                             flexGrow={1}
-                            onClick={() => history.push('/edit')}
+                            onClick={() => history.push(`/view/${el.id}`)}
                         >
                             View
                         </Button>

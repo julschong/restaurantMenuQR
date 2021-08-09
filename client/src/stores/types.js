@@ -1,3 +1,11 @@
+export const GET_MENUS = 'GET_MENUS';
+export const ADD_MENU = 'ADD_MENU';
+export const RELOAD_MENU = 'RELOAD_MENU';
+
+export const GET_CATEGORY = 'GET_CATEGORY';
+export const ADD_CATEGORY = 'ADD_CATEGORY';
+export const RELOAD_CATEGORY = 'RELOAD_MENU';
+
 export const GET_RESTAURANTS = 'GET_RESTAURANTS';
 export const ADD_RESTAURANTS = 'ADD_RESTAURANTS';
 export const RESTAURANT_ERROR = 'RESTAURANT_ERROR';
