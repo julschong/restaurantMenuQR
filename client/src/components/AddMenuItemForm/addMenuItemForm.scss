@@ -1,0 +1,22 @@
+.file-container {
+    .fileContainer {
+        outline: none;
+        box-shadow: none;
+        border: none;
+        position: absolute;
+        background-color: transparent;
+        top: 35%;
+        left: 35%;
+    }
+}
+
+.image-upload-container {
+    position: relative;
+}
+
+.cancel-button {
+    position: absolute;
+    background-color: transparent;
+    top: 5%;
+    right: 5%;
+}

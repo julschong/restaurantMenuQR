@@ -8,7 +8,6 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { VscLoading } from 'react-icons/vsc';
-import Category from './../../components/Category/index';
 import CategoryView from './../../components/CategoryView/index';
 
 const View = () => {

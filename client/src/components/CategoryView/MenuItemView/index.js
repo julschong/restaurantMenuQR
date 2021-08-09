@@ -16,7 +16,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 
 const MenuItemView = ({ item, i }) => {
     const [bg, setBG] = useState('');
-    const [active, setActive] = useState(false);
+    const [, setActive] = useState(false);
     const ref = useRef();
 
     const mouseClick = useCallback((e) => {
