@@ -1,3 +1,4 @@
+
 # QR Restaurant Menu
  
 I'm currently still working on this project.
@@ -38,6 +39,7 @@ End User (Customers) story
 ![alt text](https://github.com/julschong/QR-Restaurant-Menu/blob/master/server/planning/ACTUAL_DB_DIAGRAM.png)
 
 # Current Frontend Progress
+![restaurant_QR_current_progress](https://user-images.githubusercontent.com/71372051/130203173-ad1c0ffb-7a4e-46a1-bafa-433a0b9fc9f5.gif)
 ![upload-image](https://user-images.githubusercontent.com/71372051/130201379-303986cc-c017-4c3c-a6e0-b5f135b02a3a.gif)
 
 
