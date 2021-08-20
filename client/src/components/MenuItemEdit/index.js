@@ -1,4 +1,3 @@
-import { Image } from '@chakra-ui/image';
 import { Input } from '@chakra-ui/input';
 import { Flex } from '@chakra-ui/layout';
 import {
@@ -13,6 +12,7 @@ import { Textarea } from '@chakra-ui/textarea';
 import './menuItemEdit.scss';
 import { Box } from '@chakra-ui/react';
 import { useCallback, useEffect, useRef, useState } from 'react';
+import PictureUpload from '../PictureUpload';
 
 const MenuItemEdit = ({ item, i }) => {
     const [bg, setBG] = useState('');
@@ -32,6 +32,12 @@ const MenuItemEdit = ({ item, i }) => {
         };
     }, [mouseClick]);
 
+    const [pictures, setPictures] = useState();
+
+    const onDrop = (picture) => {
+        setPictures([...pictures, picture]);
+    };
+
     return (
         <Flex
             ref={ref}
@@ -44,14 +50,15 @@ const MenuItemEdit = ({ item, i }) => {
             onClick={(e) => setActive(true)}
         >
             <Box boxSize="200px" mr={4} overflow="hidden">
-                <Image
+                {/* <Image
                     className="item-img"
                     fallbackSrc="/asset/Blank_image.jpg"
                     borderRadius="lg"
                     src={item.imgURL}
                     alt={item.name}
                     objectFit="cover"
-                />
+                /> */}
+                <PictureUpload />
             </Box>
             <Flex direction="column" minWidth="200px" flexGrow={1}>
                 <Box className="field-box">
