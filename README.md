@@ -1,10 +1,24 @@
-
-# QR Restaurant Menu
- 
-I'm currently still working on this project.
-
 # Description
 A platform for restaurant owner to set up simple Menu and order system using QR code
+
+This project is current under construction!
+
+If you would like to try, please go ahead and clone https://github.com/julschong/restaurantMenuQR.git
+
+Only frontend is working at the moment, backend will need a major change.
+
+To start frontend, please run this from the project root: 
+
+```cd client && npm i```
+
+Afterward, please make sure to have json-server and concurrently install globally. If not, you can run:
+
+```npm i -g concurrently json-server```
+
+Then, you can start client in development mode by running:
+
+```npm run dev```
+
 
 # Use cases
 User (Owner) story
@@ -40,6 +54,5 @@ End User (Customers) story
 
 # Current Frontend Progress
 ![restaurant_QR_current_progress](https://user-images.githubusercontent.com/71372051/130203173-ad1c0ffb-7a4e-46a1-bafa-433a0b9fc9f5.gif)
-![upload-image](https://user-images.githubusercontent.com/71372051/130201379-303986cc-c017-4c3c-a6e0-b5f135b02a3a.gif)
 
 
