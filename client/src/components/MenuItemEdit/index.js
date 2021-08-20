@@ -58,7 +58,7 @@ const MenuItemEdit = ({ item, i }) => {
                     alt={item.name}
                     objectFit="cover"
                 /> */}
-                <PictureUpload />
+                <PictureUpload imgSrc={item.imgURL} />
             </Box>
             <Flex direction="column" minWidth="200px" flexGrow={1}>
                 <Box className="field-box">

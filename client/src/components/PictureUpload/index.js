@@ -1,9 +1,12 @@
 import { useState } from 'react';
 import ImageUploader from 'react-images-upload';
+import { AiOutlineClose } from 'react-icons/ai';
+
+import './PictureUpload.scss';
 
 const PictureUpload = (props) => {
     const [pictures, setPictures] = useState([]);
-    const [pictureURL, setPictureURL] = useState('');
+    const [pictureURL, setPictureURL] = useState(props.imgSrc);
 
     const onDrop = (picture) => {
         setPictures([...pictures, picture]);
@@ -12,8 +15,8 @@ const PictureUpload = (props) => {
     };
 
     return (
-        <>
-            {pictures.length === 0 ? (
+        <div className="image-upload-container">
+            {!pictureURL ? (
                 <ImageUploader
                     {...props}
                     withIcon={false}
@@ -22,11 +25,29 @@ const PictureUpload = (props) => {
                     maxFileSize={5242880}
                     withPreview
                     label=""
+                    buttonText="Choose image"
+                    className="uploader-plugin"
                 />
             ) : (
-                <img src={pictureURL} alt="dish" />
+                <>
+                    <button
+                        className="close-button"
+                        onClick={() => {
+                            if (
+                                window.confirm(
+                                    'do you want to remove the image?'
+                                )
+                            ) {
+                                setPictureURL(null);
+                            }
+                        }}
+                    >
+                        <AiOutlineClose />
+                    </button>
+                    <img src={pictureURL} alt="dish" />
+                </>
             )}
-        </>
+        </div>
     );
 };
 
