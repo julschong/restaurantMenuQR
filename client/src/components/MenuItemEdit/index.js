@@ -13,6 +13,7 @@ import './menuItemEdit.scss';
 import { Box } from '@chakra-ui/react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import PictureUpload from '../PictureUpload';
+import ImageUpload from './../ImageUpload/index';
 
 const MenuItemEdit = ({ item, i }) => {
     const [bg, setBG] = useState('');
@@ -49,7 +50,7 @@ const MenuItemEdit = ({ item, i }) => {
             bg={bg}
             onClick={(e) => setActive(true)}
         >
-            <Box boxSize="200px" mr={4} overflow="hidden">
+            <Box mr={4}>
                 {/* <Image
                     className="item-img"
                     fallbackSrc="/asset/Blank_image.jpg"
@@ -58,7 +59,7 @@ const MenuItemEdit = ({ item, i }) => {
                     alt={item.name}
                     objectFit="cover"
                 /> */}
-                <PictureUpload imgSrc={item.imgURL} />
+                <ImageUpload imgSrc={item.imgURL} />
             </Box>
             <Flex direction="column" minWidth="200px" flexGrow={1}>
                 <Box className="field-box">

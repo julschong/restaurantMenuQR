@@ -23,13 +23,18 @@ const Footer = () => {
                     Develeped By Julschong
                 </Text>
                 <Flex width="10vw" justify="space-around" mt={5}>
-                    <Link href="https://github.com/julschong" align="center">
+                    <Link
+                        href="https://github.com/julschong"
+                        align="center"
+                        target="_blank"
+                    >
                         <AiOutlineGithub color="white" size={45} />
                     </Link>
                     <Link
-                        href="https://www.linkedin.com/in/julius-lee-15934a133/"
+                        href="https://www.linkedin.com/in/julschong7/"
                         align="center"
                         ml={3}
+                        target="_blank"
                     >
                         <AiOutlineLinkedin color="white" size={45} />
                     </Link>
