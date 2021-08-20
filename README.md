@@ -33,7 +33,6 @@ End User (Customers) story
 - [ ] Category Route CRUD
 - [ ] MenuItem Route CRUD
 - [ ] Image upload to cloudinary, imgur, or S3
-- [ ] 
 
 # Current DataBase Schema
 ![alt text](https://github.com/julschong/QR-Restaurant-Menu/blob/master/server/planning/ACTUAL_DB_DIAGRAM.png)
