@@ -10,7 +10,7 @@ const RestaurantContainer = ({ el }) => {
     const history = useHistory();
 
     return (
-        <>
+        <Box className="animate__animated animate__fadeIn">
             <Box
                 className="restaurant-cell"
                 p={4}
@@ -76,7 +76,7 @@ const RestaurantContainer = ({ el }) => {
                     </ButtonGroup>
                 </Flex>
             </Box>
-        </>
+        </Box>
     );
 };
 

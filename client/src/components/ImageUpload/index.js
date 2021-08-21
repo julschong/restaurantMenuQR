@@ -2,7 +2,13 @@ import React, { useState, useCallback, useRef, useEffect } from 'react';
 import ReactCrop from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
 
-function generateDownload(canvas, crop, setUploadComplete, setUpImg) {
+function generateDownload(
+    canvas,
+    crop,
+    setUploadComplete,
+    setUpImg,
+    setImgURL
+) {
     if (!crop || !canvas) {
         return;
     }
@@ -17,13 +23,15 @@ function generateDownload(canvas, crop, setUploadComplete, setUpImg) {
             // anchor.click();
             setUploadComplete(true);
             setUpImg(previewUrl);
+            console.log(previewUrl);
+            setImgURL(previewUrl);
         },
         'image/png',
         1
     );
 }
 
-export default function ImageUpload() {
+export default function ImageUpload({ setImgURL }) {
     const [upImg, setUpImg] = useState();
     const imgRef = useRef(null);
     const previewCanvasRef = useRef(null);
@@ -95,7 +103,8 @@ export default function ImageUpload() {
                         previewCanvasRef.current,
                         completedCrop,
                         setUploadComplete,
-                        setUpImg
+                        setUpImg,
+                        setImgURL
                     )
                 }
             >

@@ -1,11 +1,11 @@
-import { Box, Flex } from '@chakra-ui/layout';
+import { Flex } from '@chakra-ui/layout';
 
 import './menuItem.scss';
 import { useRef, useState } from 'react';
 import ItemEdit from '../ItemEdit';
 import ItemView from '../ItemView';
 
-const MenuItem = ({ item, i, addMode }) => {
+const MenuItem = ({ item, i, addMode, setAddItemMode, cat }) => {
     const [bg, setBG] = useState('');
     const ref = useRef();
     const [editMode, setEditMode] = useState(addMode);
@@ -14,7 +14,7 @@ const MenuItem = ({ item, i, addMode }) => {
         item = {
             name: '',
             description: '',
-            price: '',
+            price: 0.0,
             imgURL: ''
         };
     }
@@ -34,6 +34,9 @@ const MenuItem = ({ item, i, addMode }) => {
                     item={item}
                     editMode={editMode}
                     setEditMode={setEditMode}
+                    addMode={addMode}
+                    setAddItemMode={setAddItemMode}
+                    cat={cat}
                 />
             ) : (
                 <ItemView

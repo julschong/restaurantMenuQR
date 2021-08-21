@@ -11,24 +11,49 @@ import {
     NumberInputStepper
 } from '@chakra-ui/number-input';
 import './ItemEdit.scss';
+import { useDispatch } from 'react-redux';
+import { addMenu } from '../../stores/actions/menuItemsActions';
+import { useState } from 'react';
 
-const ItemEdit = ({ item, editMode, setEditMode }) => {
+const ItemEdit = ({
+    item,
+    editMode,
+    setEditMode,
+    addMode,
+    setAddItemMode,
+    cat
+}) => {
+    const dispatch = useDispatch();
+    const [name, setName] = useState(item.name);
+    const [description, setDescription] = useState(item.desc);
+    const [price, setPrice] = useState(item.price / 100);
+    const [imgURL, setImgURL] = useState(item.imgURL);
+
     return (
         <>
             <Box mr={4}>
-                <ImageUpload imgSrc={item.imgURL} />
+                <ImageUpload imgSrc={imgURL} setImgURL={setImgURL} />
             </Box>
             <Flex direction="column" minWidth="200px" flexGrow={1}>
                 <Box className="field-box">
                     <label>Name: </label>
-                    <Input type="text" defaultValue={item.name} />
+                    <Input
+                        type="text"
+                        value={name}
+                        onChange={(e) => {
+                            setName(e.target.value);
+                        }}
+                    />
                 </Box>
                 <Box className="field-box">
                     <label>Description: </label>
                     <Textarea
                         className="desc-textbox"
                         type="text"
-                        defaultValue={item.desc}
+                        value={description}
+                        onChange={(e) => {
+                            setDescription(e.target.value);
+                        }}
                         maxLength={1024}
                     />
                 </Box>
@@ -37,7 +62,11 @@ const ItemEdit = ({ item, editMode, setEditMode }) => {
                     <Box className="field-box" width="50%">
                         <label>Price: </label>
                         <NumberInput
-                            defaultValue={item.price / 100}
+                            value={price}
+                            onChange={(e) => {
+                                setPrice(e);
+                            }}
+                            step={1}
                             precision={2}
                         >
                             <NumberInputField />
@@ -50,7 +79,21 @@ const ItemEdit = ({ item, editMode, setEditMode }) => {
                     <Flex className="menu-item-edit-button-group">
                         <Button
                             colorScheme="teal"
-                            onClick={() => setEditMode(!editMode)}
+                            onClick={() => {
+                                const menuItem = {
+                                    name,
+                                    desc: description,
+                                    imgURL,
+                                    price: price * 100,
+                                    categoryId: cat.id,
+                                    restaurantId: 1
+                                };
+                                if (addMode) {
+                                    dispatch(addMenu(menuItem));
+                                }
+                                setAddItemMode(false);
+                                setEditMode(!editMode);
+                            }}
                         >
                             Save
                         </Button>

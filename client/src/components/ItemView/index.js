@@ -12,6 +12,7 @@ const ItemView = ({ item, editMode, setEditMode }) => {
                         src={item.imgURL}
                         alt={item.name}
                         objectFit="cover"
+                        fallbackSrc="/asset/Blank_image.jpg"
                     />
                 </AspectRatio>
             </Box>

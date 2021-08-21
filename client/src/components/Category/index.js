@@ -42,7 +42,13 @@ const Category = ({ menuItems, cat }) => {
             >
                 {addItemMode ? '-' : '+'}
             </Button>
-            {addItemMode && <MenuItem addMode={true} />}
+            {addItemMode && (
+                <MenuItem
+                    addMode={true}
+                    setAddItemMode={setAddItemMode}
+                    cat={cat}
+                />
+            )}
         </Box>
     );
 };
