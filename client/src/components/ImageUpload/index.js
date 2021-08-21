@@ -1,6 +1,9 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
 import ReactCrop from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
+import './ImageUpload.scss';
+import { Box } from '@chakra-ui/react';
+import { Input } from '@chakra-ui/input';
 
 const ImageUpload = ({ setImgURL, saving }) => {
     const [upImg, setUpImg] = useState();
@@ -69,15 +72,15 @@ const ImageUpload = ({ setImgURL, saving }) => {
     }, [completedCrop]);
 
     return (
-        <div className="App">
-            <div>
-                <input
+        <Box>
+            <Box>
+                <Input
                     type="file"
                     accept="image/*"
                     onChange={onSelectFile}
                     style={{ display: uploadComplete && 'none' }}
                 />
-            </div>
+            </Box>
             {uploadComplete ? (
                 <img src={upImg} alt="cropped-img" width={200} />
             ) : (
@@ -92,7 +95,7 @@ const ImageUpload = ({ setImgURL, saving }) => {
             )}
 
             {!uploadComplete && (
-                <div style={{ display: 'none' }}>
+                <Box style={{ display: 'none' }}>
                     <canvas
                         ref={previewCanvasRef}
                         // Rounding is important so the canvas width and height matches/is a multiple for sharpness.
@@ -101,9 +104,9 @@ const ImageUpload = ({ setImgURL, saving }) => {
                             height: Math.round(completedCrop?.height ?? 0)
                         }}
                     />
-                </div>
+                </Box>
             )}
-        </div>
+        </Box>
     );
 };
 
