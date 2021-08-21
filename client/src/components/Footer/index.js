@@ -12,7 +12,6 @@ const Footer = () => {
                 justify="center"
                 align="center"
                 direction="column"
-                mt={20}
             >
                 <Text
                     textColor="whiteAlpha.800"

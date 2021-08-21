@@ -16,7 +16,7 @@ const Header = () => {
 
     return (
         <header>
-            <Flex id="navbar" bg="#DDD">
+            <Flex id="navbar" bg="#112">
                 <Link
                     to={PATHS.HOME}
                     id="brand-container"
