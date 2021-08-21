@@ -1,4 +1,4 @@
-import { Box } from '@chakra-ui/react';
+import { Box, Button } from '@chakra-ui/react';
 import { useState } from 'react';
 import MenuItem from './../MenuItem/index';
 import { Flex, Spacer } from '@chakra-ui/layout';
@@ -7,6 +7,7 @@ import { BiChevronDown, BiChevronUp } from 'react-icons/bi';
 
 const Category = ({ menuItems, cat }) => {
     const [active, setActive] = useState(true);
+    const [addItemMode, setAddItemMode] = useState(false);
 
     return (
         <Box>
@@ -34,6 +35,14 @@ const Category = ({ menuItems, cat }) => {
                     .map((item, i) => (
                         <MenuItem item={item} i={i} key={`${item.name}${i}`} />
                     ))}
+            <Button
+                onClick={() => {
+                    setAddItemMode(!addItemMode);
+                }}
+            >
+                {addItemMode ? '-' : '+'}
+            </Button>
+            {addItemMode && <MenuItem addMode={true} />}
         </Box>
     );
 };

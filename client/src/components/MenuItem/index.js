@@ -4,17 +4,25 @@ import './menuItem.scss';
 import { useRef, useState } from 'react';
 import ItemEdit from '../ItemEdit';
 import ItemView from '../ItemView';
-import { Button } from '@chakra-ui/react';
 
-const MenuItem = ({ item, i }) => {
+const MenuItem = ({ item, i, addMode }) => {
     const [bg, setBG] = useState('');
     const ref = useRef();
-    const [editMode, setEditMode] = useState(false);
+    const [editMode, setEditMode] = useState(addMode);
+
+    if (addMode) {
+        item = {
+            name: '',
+            description: '',
+            price: '',
+            imgURL: ''
+        };
+    }
 
     return (
         <Flex
             ref={ref}
-            className="item-edit-container"
+            className="item-edit-container animate__animated animate__fadeIn"
             onMouseEnter={() => {
                 setBG('blue.50');
             }}

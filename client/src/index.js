@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import './global.scss';
+import 'animate.css';
 
 import { ChakraProvider } from '@chakra-ui/react';
 import store from './stores/store';
