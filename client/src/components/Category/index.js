@@ -1,6 +1,6 @@
 import { Box } from '@chakra-ui/react';
 import { useState } from 'react';
-import MenuItemEdit from './../MenuItemEdit/index';
+import MenuItem from './../MenuItem/index';
 import { Flex, Spacer } from '@chakra-ui/layout';
 
 import { BiChevronDown, BiChevronUp } from 'react-icons/bi';
@@ -32,11 +32,7 @@ const Category = ({ menuItems, cat }) => {
                 menuItems
                     .filter((items) => items.categoryId === cat.id)
                     .map((item, i) => (
-                        <MenuItemEdit
-                            item={item}
-                            i={i}
-                            key={`${item.name}${i}`}
-                        />
+                        <MenuItem item={item} i={i} key={`${item.name}${i}`} />
                     ))}
         </Box>
     );

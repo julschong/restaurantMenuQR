@@ -8,8 +8,6 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { VscLoading } from 'react-icons/vsc';
-import Category from './../../components/Category/index';
-import CategoryView from './../../components/CategoryView/index';
 
 const View = () => {
     const { id } = useParams();
@@ -59,7 +57,7 @@ const View = () => {
                 >
                     {restaurant.name}
                 </Text>
-                {categories.map((cat, i) => {
+                {/* {categories.map((cat, i) => {
                     return (
                         <CategoryView
                             menuItems={menuItems}
@@ -67,7 +65,7 @@ const View = () => {
                             key={`${cat.name}${i}`}
                         />
                     );
-                })}
+                })} */}
             </Flex>
         </Container>
     );

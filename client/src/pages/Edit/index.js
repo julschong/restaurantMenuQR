@@ -1,6 +1,5 @@
 import { useParams, useHistory } from 'react-router-dom';
 import { Container, Text } from '@chakra-ui/react';
-import { Image } from '@chakra-ui/image';
 import { IoIosArrowBack } from 'react-icons/io';
 import { useSelector, useDispatch } from 'react-redux';
 import { VscLoading } from 'react-icons/vsc';
