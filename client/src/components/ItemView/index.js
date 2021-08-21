@@ -1,8 +1,8 @@
-import { Box, AspectRatio, Text, Image } from '@chakra-ui/react';
+import { Box, AspectRatio, Text, Image, Button } from '@chakra-ui/react';
 import { Flex } from '@chakra-ui/layout';
 import './ItemView.scss';
 
-const ItemView = ({ item }) => {
+const ItemView = ({ item, editMode, setEditMode }) => {
     console.log(item);
     return (
         <>
@@ -27,9 +27,19 @@ const ItemView = ({ item }) => {
                 <Text className="dish-desc-view" type="text">
                     {item.desc}
                 </Text>
-                <Text className="dish-price-view">
-                    ${(item.price / 100).toFixed(2)}
-                </Text>
+
+                <Flex className="menu-item-view">
+                    <Text className="dish-price-view">
+                        ${(item.price / 100).toFixed(2)}
+                    </Text>
+                    <Button
+                        className="menu-item-view-edit-button"
+                        style={{ alignSelf: 'flex-end' }}
+                        onClick={() => setEditMode(!editMode)}
+                    >
+                        {editMode ? 'Cancel' : 'Edit'}
+                    </Button>
+                </Flex>
             </Flex>
         </>
     );

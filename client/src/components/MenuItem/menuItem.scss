@@ -1,11 +1,13 @@
 .item-edit-container {
-    position: relative;
+    $side-margin: 24px;
 
     .menu-item-edit {
-        padding-inline: 40px;
-        position: absolute;
-        top: 10px;
-        right: 16px;
+        width: 30%;
+        text-align: right;
+
+        * {
+            width: 40%;
+        }
     }
     .menu-item-edit:focus {
         box-shadow: none;

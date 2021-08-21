@@ -1,4 +1,4 @@
-import { Box } from '@chakra-ui/react';
+import { Box, Button } from '@chakra-ui/react';
 import ImageUpload from './../ImageUpload/index';
 import { Flex } from '@chakra-ui/layout';
 import { Input } from '@chakra-ui/input';
@@ -12,7 +12,7 @@ import {
 } from '@chakra-ui/number-input';
 import './ItemEdit.scss';
 
-const ItemEdit = ({ item }) => {
+const ItemEdit = ({ item, editMode, setEditMode }) => {
     return (
         <>
             <Box mr={4}>
@@ -32,16 +32,34 @@ const ItemEdit = ({ item }) => {
                         maxLength={1024}
                     />
                 </Box>
-                <Box className="field-box" width="50%">
-                    <label>Price: </label>
-                    <NumberInput defaultValue={item.price / 100} precision={2}>
-                        <NumberInputField />
-                        <NumberInputStepper>
-                            <NumberIncrementStepper />
-                            <NumberDecrementStepper />
-                        </NumberInputStepper>
-                    </NumberInput>
-                </Box>
+
+                <Flex className="menu-item-edit-container">
+                    <Box className="field-box" width="50%">
+                        <label>Price: </label>
+                        <NumberInput
+                            defaultValue={item.price / 100}
+                            precision={2}
+                        >
+                            <NumberInputField />
+                            <NumberInputStepper>
+                                <NumberIncrementStepper />
+                                <NumberDecrementStepper />
+                            </NumberInputStepper>
+                        </NumberInput>
+                    </Box>
+                    <Flex className="menu-item-edit-button-group">
+                        <Button
+                            colorScheme="teal"
+                            onClick={() => setEditMode(!editMode)}
+                        >
+                            Save
+                        </Button>
+
+                        <Button onClick={() => setEditMode(!editMode)}>
+                            {editMode ? 'Cancel' : 'Edit'}
+                        </Button>
+                    </Flex>
+                </Flex>
             </Flex>
         </>
     );

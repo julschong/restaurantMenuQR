@@ -1,4 +1,4 @@
-import { Flex } from '@chakra-ui/layout';
+import { Box, Flex } from '@chakra-ui/layout';
 
 import './menuItem.scss';
 import { useRef, useState } from 'react';
@@ -21,13 +21,19 @@ const MenuItem = ({ item, i }) => {
             onMouseLeave={() => setBG('')}
             bg={bg}
         >
-            {editMode ? <ItemEdit item={item} /> : <ItemView item={item} />}
-            <Button
-                className="menu-item-edit"
-                onClick={() => setEditMode(!editMode)}
-            >
-                Edit
-            </Button>
+            {editMode ? (
+                <ItemEdit
+                    item={item}
+                    editMode={editMode}
+                    setEditMode={setEditMode}
+                />
+            ) : (
+                <ItemView
+                    item={item}
+                    editMode={editMode}
+                    setEditMode={setEditMode}
+                />
+            )}
         </Flex>
     );
 };

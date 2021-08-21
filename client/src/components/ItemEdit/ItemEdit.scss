@@ -1,3 +1,17 @@
+.menu-item-edit-container {
+    flex-direction: column;
+    width: 100%;
+    align-items: flex-end;
+    .menu-item-edit-button-group {
+        width: 50%;
+        margin-block: 5px;
+        gap: 10px;
+        button {
+            flex: 1;
+        }
+    }
+}
+
 .item-edit-container {
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
     padding: 24px;
