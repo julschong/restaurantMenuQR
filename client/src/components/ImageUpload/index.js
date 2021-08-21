@@ -2,42 +2,25 @@ import React, { useState, useCallback, useRef, useEffect } from 'react';
 import ReactCrop from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
 
-function generateDownload(
-    canvas,
-    crop,
-    setUploadComplete,
-    setUpImg,
-    setImgURL
-) {
-    if (!crop || !canvas) {
-        return;
-    }
-
-    canvas.toBlob(
-        (blob) => {
-            const previewUrl = window.URL.createObjectURL(blob);
-
-            // const anchor = document.createElement('a');
-            // anchor.download = 'cropPreview.png';
-            // anchor.href = URL.createObjectURL(blob);
-            // anchor.click();
-            setUploadComplete(true);
-            setUpImg(previewUrl);
-            console.log(previewUrl);
-            setImgURL(previewUrl);
-        },
-        'image/png',
-        1
-    );
-}
-
-export default function ImageUpload({ setImgURL }) {
+const ImageUpload = ({ setImgURL, saving }) => {
     const [upImg, setUpImg] = useState();
     const imgRef = useRef(null);
     const previewCanvasRef = useRef(null);
     const [crop, setCrop] = useState({ unit: '%', width: 30, aspect: 1 });
     const [completedCrop, setCompletedCrop] = useState(null);
     const [uploadComplete, setUploadComplete] = useState(false);
+
+    useEffect(() => {
+        if (saving) {
+            generateDownload(
+                previewCanvasRef.current,
+                completedCrop,
+                setUploadComplete,
+                setUpImg,
+                setImgURL
+            );
+        }
+    }, [saving, completedCrop, setImgURL]);
 
     const onSelectFile = (e) => {
         if (e.target.files && e.target.files.length > 0) {
@@ -95,22 +78,6 @@ export default function ImageUpload({ setImgURL }) {
                     style={{ display: uploadComplete && 'none' }}
                 />
             </div>
-            <button
-                type="button"
-                disabled={!completedCrop?.width || !completedCrop?.height}
-                onClick={() =>
-                    generateDownload(
-                        previewCanvasRef.current,
-                        completedCrop,
-                        setUploadComplete,
-                        setUpImg,
-                        setImgURL
-                    )
-                }
-            >
-                Crop
-            </button>
-            <br />
             {uploadComplete ? (
                 <img src={upImg} alt="cropped-img" width={200} />
             ) : (
@@ -138,4 +105,35 @@ export default function ImageUpload({ setImgURL }) {
             )}
         </div>
     );
+};
+
+function generateDownload(
+    canvas,
+    crop,
+    setUploadComplete,
+    setUpImg,
+    setImgURL
+) {
+    if (!crop || !canvas) {
+        return;
+    }
+
+    canvas.toBlob(
+        (blob) => {
+            const previewUrl = window.URL.createObjectURL(blob);
+
+            // const anchor = document.createElement('a');
+            // anchor.download = 'cropPreview.png';
+            // anchor.href = URL.createObjectURL(blob);
+            // anchor.click();
+            setUploadComplete(true);
+            setUpImg(previewUrl);
+            console.log(previewUrl);
+            setImgURL(previewUrl);
+        },
+        'image/png',
+        1
+    );
 }
+
+export default ImageUpload;

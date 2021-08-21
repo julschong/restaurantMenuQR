@@ -5,19 +5,10 @@ import { useRef, useState } from 'react';
 import ItemEdit from '../ItemEdit';
 import ItemView from '../ItemView';
 
-const MenuItem = ({ item, i, addMode, setAddItemMode, cat }) => {
+const MenuItem = ({ item, i, cat }) => {
     const [bg, setBG] = useState('');
     const ref = useRef();
-    const [editMode, setEditMode] = useState(addMode);
-
-    if (addMode) {
-        item = {
-            name: '',
-            description: '',
-            price: 0.0,
-            imgURL: ''
-        };
-    }
+    const [editMode, setEditMode] = useState();
 
     return (
         <Flex
@@ -34,8 +25,6 @@ const MenuItem = ({ item, i, addMode, setAddItemMode, cat }) => {
                     item={item}
                     editMode={editMode}
                     setEditMode={setEditMode}
-                    addMode={addMode}
-                    setAddItemMode={setAddItemMode}
                     cat={cat}
                 />
             ) : (

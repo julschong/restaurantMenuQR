@@ -4,6 +4,7 @@ import MenuItem from './../MenuItem/index';
 import { Flex, Spacer } from '@chakra-ui/layout';
 
 import { BiChevronDown, BiChevronUp } from 'react-icons/bi';
+import AddMenuItem from './../AddMenuItem/index';
 
 const Category = ({ menuItems, cat }) => {
     const [active, setActive] = useState(true);
@@ -43,7 +44,7 @@ const Category = ({ menuItems, cat }) => {
                 {addItemMode ? '-' : '+'}
             </Button>
             {addItemMode && (
-                <MenuItem
+                <AddMenuItem
                     addMode={true}
                     setAddItemMode={setAddItemMode}
                     cat={cat}

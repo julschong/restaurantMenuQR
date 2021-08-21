@@ -3,7 +3,6 @@ import { Flex } from '@chakra-ui/layout';
 import './ItemView.scss';
 
 const ItemView = ({ item, editMode, setEditMode }) => {
-    console.log(item);
     return (
         <>
             <Box mr={4}>

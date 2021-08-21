@@ -10,22 +10,70 @@ import {
     NumberInputField,
     NumberInputStepper
 } from '@chakra-ui/number-input';
-import './ItemEdit.scss';
 import { useDispatch } from 'react-redux';
 import { addMenu } from '../../stores/actions/menuItemsActions';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
-const ItemEdit = ({ item, editMode, setEditMode, cat }) => {
+const AddMenuItem = ({ addMode, setAddItemMode, cat }) => {
     const dispatch = useDispatch();
-    const [name, setName] = useState(item.name);
-    const [description, setDescription] = useState(item.desc);
-    const [price, setPrice] = useState(item.price / 100);
-    const [imgURL, setImgURL] = useState(item.imgURL);
+    const [name, setName] = useState('');
+    const [description, setDescription] = useState('');
+    const [price, setPrice] = useState(0);
+    const [imgURL, setImgURL] = useState('');
+
+    const [bg, setBG] = useState('');
+    const ref = useRef();
+
+    const [saving, setSaving] = useState(false);
+
+    useEffect(() => {
+        return () => {
+            if (saving) {
+                setTimeout(() => {
+                    const menuItem = {
+                        name,
+                        desc: description,
+                        imgURL,
+                        price: price * 100,
+                        categoryId: cat.id,
+                        restaurantId: 1
+                    };
+                    if (imgURL.length > 0) {
+                        dispatch(addMenu(menuItem));
+                    }
+                    setAddItemMode(false);
+                });
+            }
+        };
+    }, [
+        cat.id,
+        description,
+        dispatch,
+        imgURL,
+        name,
+        price,
+        saving,
+        setAddItemMode,
+        addMode
+    ]);
 
     return (
-        <>
+        <Flex
+            ref={ref}
+            className="item-edit-container animate__animated animate__fadeIn"
+            onMouseEnter={() => {
+                setBG('blue.50');
+            }}
+            onMouseLeave={() => setBG('')}
+            bg={bg}
+        >
             <Box mr={4}>
-                <ImageUpload imgSrc={imgURL} setImgURL={setImgURL} />
+                <ImageUpload
+                    imgSrc={imgURL}
+                    setImgURL={setImgURL}
+                    saving={saving}
+                    setAddItemMode={setAddItemMode}
+                />
             </Box>
             <Flex direction="column" minWidth="200px" flexGrow={1}>
                 <Box className="field-box">
@@ -73,20 +121,16 @@ const ItemEdit = ({ item, editMode, setEditMode, cat }) => {
                         <Button
                             colorScheme="teal"
                             onClick={() => {
-                                setEditMode(!editMode);
+                                setSaving(true);
                             }}
                         >
                             Save
                         </Button>
-
-                        <Button onClick={() => setEditMode(!editMode)}>
-                            {editMode ? 'Cancel' : 'Edit'}
-                        </Button>
                     </Flex>
                 </Flex>
             </Flex>
-        </>
+        </Flex>
     );
 };
 
-export default ItemEdit;
+export default AddMenuItem;
