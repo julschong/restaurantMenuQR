@@ -2,13 +2,6 @@ import React, { useState, useCallback, useRef, useEffect } from 'react';
 import ReactCrop from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
 
-function blobToFile(theBlob, fileName) {
-    //A Blob() is almost a File() - it's just missing the two properties below which we will add
-    theBlob.lastModifiedDate = new Date();
-    theBlob.name = fileName;
-    return theBlob;
-}
-
 function generateDownload(canvas, crop, setUploadComplete, setUpImg) {
     if (!crop || !canvas) {
         return;
@@ -123,7 +116,7 @@ export default function ImageUpload() {
             )}
 
             {!uploadComplete && (
-                <div>
+                <div style={{ display: 'none' }}>
                     <canvas
                         ref={previewCanvasRef}
                         // Rounding is important so the canvas width and height matches/is a multiple for sharpness.
